@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -89,6 +90,32 @@ class MeuAdaptador extends ArrayAdapter{
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return super.getView(position, convertView, parent);
+
+        View minhaView;
+        minhaView = convertView;
+        ViewPersonagem viewPersonagem;
+
+        if(convertView == null){
+            LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            minhaView = inflater.inflate(R.layout.minha_celula,parent,false);
+            viewPersonagem = new ViewPersonagem();
+
+            viewPersonagem.icone = minhaView.findViewById(R.id.meuIcone);
+            viewPersonagem.titulo = minhaView.findViewById(R.id.meuTitulo);
+            viewPersonagem.descricao = minhaView.findViewById(R.id.meuDescricao);
+
+            minhaView.setTag(viewPersonagem);
+        }else{
+            viewPersonagem = (ViewPersonagem) minhaView.getTag();
+        }
+
+        DadosPersonagem dadosPersonagem;
+        dadosPersonagem = (DadosPersonagem) this.getItem(position);
+
+        viewPersonagem.icone.setImageResource(dadosPersonagem.getIcone());
+        viewPersonagem.titulo.setText(dadosPersonagem.getTitulo());
+        viewPersonagem.descricao.setText(dadosPersonagem.getDescricao());
+
+        return minhaView;
     }
 }
