@@ -27,15 +27,27 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.carrinho, R.drawable.ios,R.drawable.android,R.drawable.realidade_aumentada,R.drawable.sound_fx,
             R.drawable.max, R.drawable.games,};
     
-    String[] listaDescricao= {"Felpudo","Fofura","Lesmo","Bugada","Uruca","Racing","iOS","Android","RealidadeAumentada",
-            "Sound FX","3D Studio Max", "Games"};
+    String[] listaDescricao= {"O protagonista dos nossos cursos de iOS e Android. Vive se metendo em altas aventuras para aprender a programar.",
+            "É a namoradinha do Felpudo, a personagem que mostra que programação é sim coisa de meninas!",
+            "Uma criatura asqueirosa que vive atrapalhando a vida do Felpudo e riando problemas no seu caminho.",
+            "É o protagonista dos nossos cursos de iOS e Android. Vive se metendo em altas aventuras para aprender a programar.",
+            "É a namoradinha do Felpudo, a personagem que mostra que programação é sim coisa de meninas!",
+            "É a criatura asqueirosa que vive atrapalhando a vida do Felpudo e riando problemas no seu caminho.",
+            "É o protagonista dos nossos cursos de iOS e Android. Vive se metendo em altas aventuras para aprender a programar.",
+            "É a namoradinha do Felpudo, a personagem que mostra que programação é sim coisa de meninas!",
+            "É a criatura asqueirosa que vive atrapalhando a vida do Felpudo e riando problemas no seu caminho.",
+            "É o protagonista dos nossos cursos de iOS e Android. Vive se metendo em altas aventuras para aprender a programar.",
+            "É a namoradinha do Felpudo, a personagem que mostra que programação é sim coisa de meninas!",
+            "É a criatura asqueirosa que vive atrapalhando a vida do Felpudo e riando problemas no seu caminho."};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*ArrayAdapter<String> meuAdaptador = new ArrayAdapter<String>(getApplicationContext()
+        /*
+        Exemplo de um adaptador de array basico.
+        ArrayAdapter<String> meuAdaptador = new ArrayAdapter<String>(getApplicationContext()
                 ,android.R.layout.simple_list_item_1,android.R.id.text1,listaNomes);
 
         ListView minhaLista = findViewById(R.id.minhaLista);
