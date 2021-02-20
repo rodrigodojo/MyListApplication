@@ -2,26 +2,30 @@ package com.dojo.mylistapplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     String[] listaNomes = {"Felpudo","Fofura","Lesmo","Bugada","Uruca","Racing","iOS","Android","RealidadeAumentada",
             "Sound FX","3D Studio Max", "Games"};
 
-    int[] listaIcone = {R.drawable.carrinho, R.drawable.carrinho,R.drawable.carrinho,R.drawable.carrinho,R.drawable.carrinho,
-            R.drawable.carrinho, R.drawable.carrinho,R.drawable.carrinho,R.drawable.carrinho,R.drawable.carrinho,
-            R.drawable.carrinho, R.drawable.carrinho,};
+    int[] listaIcone = {R.drawable.felpudo, R.drawable.fofura,R.drawable.lesmo,R.drawable.bugado,R.drawable.uruca,
+            R.drawable.carrinho, R.drawable.ios,R.drawable.android,R.drawable.realidade_aumentada,R.drawable.sound_fx,
+            R.drawable.max, R.drawable.games,};
     
     String[] listaDescricao= {"Felpudo","Fofura","Lesmo","Bugada","Uruca","Racing","iOS","Android","RealidadeAumentada",
             "Sound FX","3D Studio Max", "Games"};
@@ -58,6 +62,39 @@ public class MainActivity extends AppCompatActivity {
         }
 
         minhaLista.setAdapter(meuAdaptador);
+
+        minhaLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                DadosPersonagem dadosPersonagem;
+                dadosPersonagem = (DadosPersonagem) meuAdaptador.getItem(position);
+
+                criaAlerta(dadosPersonagem);
+            }
+        });
+    }
+
+    public void criaAlerta(DadosPersonagem dadosPersonagem){
+
+        AlertDialog.Builder meuAlerta;
+        meuAlerta = new AlertDialog.Builder(MainActivity.this);
+
+        meuAlerta.setTitle(dadosPersonagem.getTitulo());
+        meuAlerta.setMessage(dadosPersonagem.getDescricao());
+        meuAlerta.setCancelable(true);
+        meuAlerta.setIcon(dadosPersonagem.getIcone());
+
+        meuAlerta.setPositiveButton("Confirma", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this,"confirma!",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        meuAlerta.create();
+        meuAlerta.show();
+
     }
 }
 
